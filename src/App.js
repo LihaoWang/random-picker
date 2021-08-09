@@ -1,25 +1,68 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import { useState } from "react";
 function App() {
+  const [input, setInput] = useState(null);
+  const [pick, setPick] = useState();
+  const [mode, setMode] = useState("1");
+  const handleChange = (e) => {
+    setInput(e.target.value);
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    var arr;
+    console.log(input);
+    if (input === null) {
+      alert("Please enter something");
+    } else {
+      // const arr = mode ? input.split(",") : input.split(/\n/);
+      if (mode === "1") {
+        arr = input.split(",");
+      } else {
+        arr = input.split(/\n/);
+      }
+
+      setPick(random_item(arr));
+    }
+  };
+  const onChangeMode = (e) => {
+    e.preventDefault();
+    // console.log(e.target.value);
+    setMode(e.target.value);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <>
+        <Form className="form" onSubmit={handleSubmit}>
+          <Form.Select onChange={onChangeMode}>
+            <option value={"1"}>seperate items by comma</option>
+            <option value={"2"}>seperate items by new line</option>
+          </Form.Select>
+          <Form.Group className="mt-3">
+            <Form.Control
+              as="textarea"
+              rows={3}
+              placeholder="Please enter something"
+              value={input}
+              onChange={handleChange}
+            />
+            <Button type="submit" value="submit" className="btn mt-4">
+              Pick One!
+            </Button>
+          </Form.Group>
+        </Form>
+
+        <p className="pick">{pick}</p>
+      </>
     </div>
   );
+}
+
+function random_item(items) {
+  return items[Math.floor(Math.random() * items.length)];
 }
 
 export default App;
