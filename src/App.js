@@ -38,8 +38,8 @@ function App() {
       <>
         <Form className="form" onSubmit={handleSubmit}>
           <Form.Select onChange={onChangeMode}>
-            <option value={"1"}>seperate items by comma</option>
-            <option value={"2"}>seperate items by new line</option>
+            <option value={"1"}>seperated by commas</option>
+            <option value={"2"}>seperated by lines</option>
           </Form.Select>
           <Form.Group className="mt-3">
             <Form.Control
