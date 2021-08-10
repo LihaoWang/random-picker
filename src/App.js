@@ -19,9 +19,9 @@ function App() {
     } else {
       // const arr = mode ? input.split(",") : input.split(/\n/);
       if (mode === "1") {
-        arr = input.split(",");
-      } else {
         arr = input.split(/\n/);
+      } else {
+        arr = input.split(",");
       }
 
       setPick(random_item(arr));
@@ -38,8 +38,8 @@ function App() {
       <>
         <Form className="form" onSubmit={handleSubmit}>
           <Form.Select onChange={onChangeMode}>
-            <option value={"1"}>seperated by commas</option>
-            <option value={"2"}>seperated by lines</option>
+            <option value={"1"}>seperated by lines</option>
+            <option value={"2"}>seperated by commas</option>
           </Form.Select>
           <Form.Group className="mt-3">
             <Form.Control
